@@ -1,30 +1,77 @@
-import {
-  BluePrimaryButton,
-  GreenPrimaryButton,
-  RedPrimaryButton,
-  YellowPrimaryButton,
-  PurplePrimaryButton,
-  PinkPrimaryButton,
-  IndigoPrimaryButton,
-  TealPrimaryButton,
-  OrangePrimaryButton,
-  GrayPrimaryButton,
-} from "../Buttons/Solid";
+import React from "react";
 
+// Primary Buttons
+import * as SolidButtons from "../Buttons/Solid";
 const Wrapper = () => {
   return (
-    <>
-      <BluePrimaryButton text={"hello"} />
-      <GreenPrimaryButton text={"hello"} />
-      <RedPrimaryButton text={"hello"} />
-      <YellowPrimaryButton text={"hello"} />
-      <PurplePrimaryButton text={"hello"} />
-      <PinkPrimaryButton text={"hello"} />
-      <IndigoPrimaryButton text={"hello"} />
-      <OrangePrimaryButton text={"hello"} />
-      <GrayPrimaryButton text={"hello"} />
-      <TealPrimaryButton text={"hello"} />
-    </>
+    <div className="p-10 space-y-4">
+      <SolidButtons.BluePrimaryButton>
+        BluePrimaryButton
+      </SolidButtons.BluePrimaryButton>
+      <SolidButtons.GreenPrimaryButton>
+        GreenPrimaryButton
+      </SolidButtons.GreenPrimaryButton>
+      <SolidButtons.RedPrimaryButton>
+        RedPrimaryButton
+      </SolidButtons.RedPrimaryButton>
+      <SolidButtons.YellowPrimaryButton>
+        YellowPrimaryButton
+      </SolidButtons.YellowPrimaryButton>
+      <SolidButtons.PurplePrimaryButton>
+        PurplePrimaryButton
+      </SolidButtons.PurplePrimaryButton>
+      <SolidButtons.PinkPrimaryButton>
+        PinkPrimaryButton
+      </SolidButtons.PinkPrimaryButton>
+      <SolidButtons.IndigoPrimaryButton>
+        IndigoPrimaryButton
+      </SolidButtons.IndigoPrimaryButton>
+      <SolidButtons.TealPrimaryButton>
+        TealPrimaryButton
+      </SolidButtons.TealPrimaryButton>
+      <SolidButtons.OrangePrimaryButton>
+        OrangePrimaryButton
+      </SolidButtons.OrangePrimaryButton>
+      <SolidButtons.GrayPrimaryButton>
+        GrayPrimaryButton
+      </SolidButtons.GrayPrimaryButton>
+      <SolidButtons.RosePrimaryButton>
+        RosePrimaryButton
+      </SolidButtons.RosePrimaryButton>
+      <SolidButtons.LimePrimaryButton>
+        LimePrimaryButton
+      </SolidButtons.LimePrimaryButton>
+      <SolidButtons.AmberPrimaryButton>
+        AmberPrimaryButton
+      </SolidButtons.AmberPrimaryButton>
+      <SolidButtons.CyanPrimaryButton>
+        CyanPrimaryButton
+      </SolidButtons.CyanPrimaryButton>
+      <SolidButtons.FuchsiaPrimaryButton>
+        FuchsiaPrimaryButton
+      </SolidButtons.FuchsiaPrimaryButton>
+      <SolidButtons.EmeraldPrimaryButton>
+        EmeraldPrimaryButton
+      </SolidButtons.EmeraldPrimaryButton>
+      <SolidButtons.SkyPrimaryButton>
+        SkyPrimaryButton
+      </SolidButtons.SkyPrimaryButton>
+      <SolidButtons.VioletPrimaryButton>
+        VioletPrimaryButton
+      </SolidButtons.VioletPrimaryButton>
+      <SolidButtons.StonePrimaryButton>
+        StonePrimaryButton
+      </SolidButtons.StonePrimaryButton>
+      <SolidButtons.NeutralPrimaryButton>
+        NeutralPrimaryButton
+      </SolidButtons.NeutralPrimaryButton>
+      <SolidButtons.ZincPrimaryButton>
+        ZincPrimaryButton
+      </SolidButtons.ZincPrimaryButton>
+      <SolidButtons.SlatePrimaryButton>
+        SlatePrimaryButton
+      </SolidButtons.SlatePrimaryButton>
+    </div>
   );
 };
 

@@ -1,7 +1,5 @@
-export default function GrayPrimaryButton({ text }) {
-  return (
-    <button className="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4">
-      {text}
-    </button>
-  );
-}
+export const GrayPrimaryButton = ({ children }) => (
+  <button className="bg-gray-600 text-white px-4 py-2 hover:bg-gray-700 transition">
+    {children}
+  </button>
+);

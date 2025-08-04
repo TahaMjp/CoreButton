@@ -1,7 +1,5 @@
-export default function PinkPrimaryButton({ text }) {
-  return (
-    <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4">
-      {text}
-    </button>
-  );
-}
+export const PinkPrimaryButton = ({ children }) => (
+  <button className="bg-pink-600 text-white px-4 py-2 hover:bg-pink-700 transition">
+    {children}
+  </button>
+);
