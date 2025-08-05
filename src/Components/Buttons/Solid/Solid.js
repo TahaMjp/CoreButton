@@ -2,8 +2,11 @@ import * as SolidButtons from "../Solid";
 
 const Solid = () => {
   return (
-    <div className="w-full bg-gray-800">
-      <div className="p-10 space-y-4">
+    <div className="w-10/12 mx-auto p-4 my-5 border-2">
+      <p className="text-xl font-bold font-mono tracking-wide text-center p-4">
+        Solid Buttons
+      </p>
+      <div className="w-full flex gap-4 flex-wrap ">
         <SolidButtons.BluePrimaryButton>
           BluePrimaryButton
         </SolidButtons.BluePrimaryButton>
