@@ -215,6 +215,15 @@
   }
 }
 @layer utilities {
+  .fixed {
+    position: fixed;
+  }
+  .sticky {
+    position: sticky;
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
   .table {
     display: table;
   }
@@ -317,6 +326,9 @@
   }
   .bg-violet-600 {
     background-color: var(--color-violet-600);
+  }
+  .bg-white {
+    background-color: var(--color-white);
   }
   .bg-yellow-500 {
     background-color: var(--color-yellow-500);
