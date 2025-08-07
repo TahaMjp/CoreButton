@@ -88,7 +88,7 @@ function App() {
 - **Icon-Only Button:** Use with `icon` and `rounded="full"` for circular UI  
 - **Rounded Pill Button:** Customize `rounded` prop for a sleek, pill shape
 
-➡️ Check out the examples in `src/components/CoreButton/` to explore each case in action.
+➡️ Check out the examples in `src/Components/Examples/` to explore each case in action.
 
 ---
 
@@ -102,8 +102,6 @@ We’d love your help! CoreButton is evolving and your ideas can shape its futur
 2. Create a feature branch: `git checkout -b feature/my-idea`  
 3. Make your changes  
 4. Submit a pull request  
-
-📘 Full details in the [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
