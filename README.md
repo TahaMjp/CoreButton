@@ -55,12 +55,16 @@ src/
 └── Components/
     └── Buttons/
         └── Solid/
+            ├── RedPrimary/
+            │   └── RedPrimary-md.js
+            ├── GreenPrimary/
+            │   └── GreenPrimary-md.js
             ├── BluePrimary/
             │   └── BluePrimary-md.js
             └── Solid.js
 ```
 
-- `BluePrimary-md.js` – A medium-sized solid blue button component.
+- `RedPrimary-md.js / GreenPrimary-md.js / BluePrimary-md.js` – Medium-sized solid colored button components.
 - `Solid.js` – A wrapper that exports all solid button variants.
 
 We follow a **modular folder-per-variant** structure so buttons are easy to find, edit, or remove.
