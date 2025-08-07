@@ -1,149 +1,116 @@
-# 🎛️ Button-Kit
 
-A clean, reusable, and fully customizable collection of modern button components built with **React.js** and **Tailwind CSS**.  
-Designed to speed up your UI development by providing pre-styled, production-ready button components in a plug-and-play format.
+# CoreButton
+
+A powerful, flexible, and reusable button component built with React and Tailwind CSS — designed to simplify your UI development with one central component.
 
 ---
 
-## 🌟 Introduction
+## 🚀 Introduction
 
-**Button-Kit** is a modular button library built to provide consistent design and development patterns for UI buttons across projects. Every button is styled using Tailwind CSS, making customization fast and effortless.
-
-If you're tired of re-building buttons from scratch in every project — Button-Kit is your new best friend.
+**CoreButton** is a single, configurable button component built to replace the clutter of multiple button definitions. Whether you need a simple solid button, an icon-only button, or a full-width call-to-action — it’s all handled with props.
 
 ---
 
 ## 🎯 Our Vision
 
-Our goal is to create a **developer-first button kit** that's:
+We created CoreButton to:
 
-- 🔩 Easy to integrate
-- 🎨 Fully styleable via Tailwind
-- 📦 Organized by color, type, and size
-- 🧑‍💻 Contributor-friendly and open source
-
-We believe in sharing components that **just work**, so others can focus on building the bigger picture.
+- Streamline button usage across projects  
+- Ensure design consistency with ease  
+- Reduce duplication and simplify UI architecture  
+- Offer deep customizability in a single, clear component
 
 ---
 
-## 💡 Why Use Button-Kit?
+## 💡 Benefits of CoreButton
 
-- ✅ **Plug-and-play button components**
-- 🧩 **Organized folder structure**
-- 🎨 **Styled with Tailwind utility classes**
-- 🛠️ **Built with React**
-- 🧠 **Easy naming conventions**
-- 🧪 **Perfect for design systems or component libraries**
-
----
-
-## 🧰 Technologies Used
-
-| Tech            | Purpose                         |
-|-----------------|----------------------------------|
-| **React.js**    | Component-based development      |
-| **Tailwind CSS**| Utility-first styling            |
-
-> No external UI frameworks. All buttons are styled using raw Tailwind classes for full control.
+- **One component for every button you’ll need**  
+- Control everything with intuitive props  
+- Clean, semantic JSX without repetitive code  
+- Built with modern best practices for React + Tailwind  
+- Easy to adjust and scale over time
 
 ---
 
-## 🗂️ Buttons Folder Structure (Sample)
+## 🛠️ Tech Stack
+
+- **React** — for reusable component structure  
+- **Tailwind CSS** — for styling flexibility  
+- **clsx** — class name conditional logic  
+- **react-icons** (optional) — for easy icon integration
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repo
 
 ```bash
-src/
-└── Components/
-    └── Buttons/
-        └── Solid/
-            ├── RedPrimary/
-            │   └── RedPrimary-md.js
-            ├── GreenPrimary/
-            │   └── GreenPrimary-md.js
-            ├── BluePrimary/
-            │   └── BluePrimary-md.js
-            └── Solid.js
+git clone https://github.com/TahaMjp/CoreButton.git
+cd CoreButton
 ```
 
-- `RedPrimary-md.js / GreenPrimary-md.js / BluePrimary-md.js` – Medium-sized solid colored button components.
-- `Solid.js` – A wrapper that exports all solid button variants.
-
-We follow a **modular folder-per-variant** structure so buttons are easy to find, edit, or remove.
-
----
-
-## ⚙️ Setup & Usage
-
-### 🔧 1. Clone & Install
+### 2. Install dependencies
 
 ```bash
-git clone https://github.com/TahaMjp/button-kit.git
-cd button-kit
 npm install
 ```
 
-### ▶️ 2. Start Dev Server
+### 3. Start the dev server
 
 ```bash
 npm run dev
 ```
 
-Runs the app locally at `http://localhost:5173` (or the next available port).
-
----
-
-## 📦 How to Use a Button
-
-You can import and use any button component like this:
+### 4. Use CoreButton in your project
 
 ```jsx
-import { BluePrimaryMd } from './Components/Buttons/Solid/BluePrimary/BluePrimary-md';
+import CoreButton from './components/CoreButton/CoreButton';
 
 function App() {
-  return <BluePrimaryMd>Click Me</BluePrimaryMd>;
+  return (
+    <CoreButton
+      text="Get Started"
+      size="md"
+      color="blue"
+      variant="solid"
+    />
+  );
 }
 ```
 
-✅ Buttons support children and can be styled further using Tailwind utility classes.
+---
+
+## ✨ Examples of Usage
+
+- **Basic Button:** Only required props (text, size, variant, color)  
+- **Full Customization:** Add icons, loading state, disabled, rounded corners, full width  
+- **Icon-Only Button:** Use with `icon` and `rounded="full"` for circular UI  
+- **Rounded Pill Button:** Customize `rounded` prop for a sleek, pill shape
+
+➡️ Check out the examples in `src/components/CoreButton/` to explore each case in action.
 
 ---
 
-## 🖼️ Demo & Preview (GIF)
+## 🤝 Contributing
 
-### 🔵 Blue Primary Button  
-![Blue Primary Button Demo](https://github.com/TahaMjp/button-kit/assets/your-gif-path/blue-button-demo.gif)
+We’d love your help! CoreButton is evolving and your ideas can shape its future.
 
-> More GIFs are coming soon and will be stored under `/public/gifs/`.
+### 🧭 Quick Start to Contribute:
 
-For quick visual previews, visit the **GitHub Pages live demo**:  
-🌐 [https://tahamjp.github.io/button-kit](https://tahamjp.github.io/button-kit)
+1. Fork this repository  
+2. Create a feature branch: `git checkout -b feature/my-idea`  
+3. Make your changes  
+4. Submit a pull request  
 
----
-
-## 🤝 We're Open for Contributions!
-
-Wanna contribute? Add a new button variant, fix an issue, or improve documentation — we’d love your help!
-
-We follow simple, clean naming and formatting standards. Whether you're a beginner or expert, you're welcome to pitch in!
-
----
-
-## 🧭 How to Contribute
-
-1. 🍴 Fork the repo  
-2. 🌿 Create a new branch  
-3. 🛠️ Add your component or fix  
-4. 📤 Open a Pull Request
-
-🔗 Read the full [Contribution Guide →](https://github.com/TahaMjp/button-kit/blob/main/CONTRIBUTING.md)
-
-> Our contribution guide includes naming rules, file structure standards, and submission steps.
+📘 Full details in the [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
 ## 📄 License
 
-**[MIT License](https://github.com/TahaMjp/button-kit/blob/main/LICENSE)**
-
-You are free to use, modify, distribute, and even sell products based on this project — just retain the license and attribution.
+CoreButton is open-source and licensed under the **MIT License** — feel free to use it in personal or commercial projects. See [LICENSE](./LICENSE) for details.
 
 ---
+
+Made with ❤️ by [@TahaMjp](https://github.com/TahaMjp) — bringing clean UI to your fingertips.
