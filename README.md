@@ -130,7 +130,3 @@ We’d love your help! CoreButton is evolving and your ideas can shape its futur
 ## 📄 License
 
 CoreButton is open-source and licensed under the **MIT License** — feel free to use it in personal or commercial projects. See [LICENSE](./LICENSE) for details.
-
----
-
-Made with ❤️ by [@TahaMjp](https://github.com/TahaMjp) — bringing clean UI to your fingertips.
