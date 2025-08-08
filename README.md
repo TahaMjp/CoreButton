@@ -1,132 +1,190 @@
-
-# CoreButton
-
-A powerful, flexible, and reusable button component built with React and Tailwind CSS — designed to simplify your UI development with one central component.
+# 🧱 CoreUI Documentation
 
 ---
 
-## 🚀 Introduction
+## 🚀 Getting Started
 
-**CoreButton** is a single, configurable button component built to replace the clutter of multiple button definitions. Whether you need a simple solid button, an icon-only button, or a full-width call-to-action — it’s all handled with props.
+To get started with CoreUI:
 
----
-
-## 🎯 Our Vision
-
-We created CoreButton to:
-
-- Streamline button usage across projects  
-- Ensure design consistency with ease  
-- Reduce duplication and simplify UI architecture  
-- Offer deep customizability in a single, clear component
-
----
-
-## 💡 Benefits of CoreButton
-
-- **One component for every button you’ll need**  
-- Control everything with intuitive props  
-- Clean, semantic JSX without repetitive code  
-- Built with modern best practices for React + Tailwind  
-- Easy to adjust and scale over time
-
----
-
-## 🛠️ Tech Stack
-
-- **React** — for reusable component structure  
-- **Tailwind CSS** — for styling flexibility  
-- **clsx** — class name conditional logic  
-- **react-icons** (optional) — for easy icon integration
-
----
-
-## ⚙️ Getting Started
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/TahaMjp/CoreButton.git
-cd CoreButton
-```
-
-### 2. Install dependencies
+### 1. Install via NPM or Yarn
 
 ```bash
 npm install
+# or
+yarn install
 ```
 
-### 3. Start the dev server
+### 2. Run the project
 
 ```bash
 npm run dev
 ```
 
-### 4. Use CoreButton in your project
+> Ensure you have Node.js ≥ 16 installed for compatibility.
+
+---
+
+## ⚙️ Installation & Setup
+
+CoreUI uses **Tailwind CSS**. Make sure your project is configured properly:
+
+### 1. Tailwind Integration
+
+Tailwind setup is already handled. You’ll find these files:
+
+- `src/input.css` → source Tailwind file
+- `src/output.css` → compiled version
+
+### 2. Required Tailwind Config
+
+Ensure `tailwind.config.js` includes:
+
+```js
+content: [
+  "./src/**/*.{js,jsx,ts,tsx}",
+],
+theme: {
+  extend: {},
+},
+plugins: [],
+```
+
+---
+
+## 🧩 Components
+
+---
+
+### 🔘 CoreButton
+
+A flexible and styled button component using Tailwind, `clsx`, and responsive variants.
+
+#### ✅ When to use:
+
+- Call-to-action buttons
+- Icon-only interactions
+- Rounded UI buttons
+
+#### Props
+
+| Prop       | Type     | Description                             | Default      |
+|------------|----------|-----------------------------------------|--------------|
+| `variant`  | string   | Tailwind variant (e.g., `primary`)      | `"primary"`  |
+| `size`     | string   | Size of the button (`sm`, `md`, `lg`)   | `"md"`       |
+| `icon`     | JSX      | Optional icon to render inside button   | `undefined`  |
+| `children` | ReactNode| Button label/content                    | —            |
+| `rounded`  | boolean  | If true, applies full rounded corners   | `false`      |
+| `onClick`  | function | Click event handler                      | —            |
+
+#### Variants
 
 ```jsx
-import CoreButton from './components/CoreButton/CoreButton';
+<CoreButton variant="primary" size="md">Click me</CoreButton>
+<CoreButton variant="danger" size="lg" rounded>Delete</CoreButton>
+<CoreButton variant="ghost" icon={<FiPlus />} />
+```
 
-function App() {
-  return (
-    <CoreButton
-      text="Get Started"
-      size="md"
-      color="blue"
-      variant="solid"
-    />
-  );
+Supported variants: `primary`, `secondary`, `danger`, `ghost`
+
+#### Accessibility
+
+- Includes keyboard focus ring (`focus:ring-*`)
+- Accepts `aria-*` props
+- Icon-only buttons should include `aria-label`
+
+#### Keyboard Interactions
+
+- `Enter` or `Space` triggers click
+- Focus styles follow Tailwind's default ring styles
+
+### 🛠️ CoreCard
+
+🛠️ Under development.
+
+> Placeholder for future `CoreCard` component.
+
+---
+
+## 🎨 Theming & Styling
+
+### Tailwind Utilities
+
+You can override and theme components by:
+
+- Using utility classes via `clsx`
+- Extending Tailwind in `tailwind.config.js`
+- Applying `rounded`, `hover`, and `focus` states directly
+
+Example override:
+
+```jsx
+<CoreButton className="bg-pink-600 hover:bg-pink-700">Custom</CoreButton>
+```
+
+---
+
+## 🔍 API Reference
+
+### CoreButton Types
+
+```ts
+type CoreButtonProps = {
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
+  rounded?: boolean;
+  onClick?: () => void;
 }
 ```
 
 ---
 
-## 🧩 CoreButton Props Overview
+## 🛣️ Roadmap
 
-| Prop Name     | Required | Default Value | What It Does |
-|---------------|----------|----------------|--------------|
-| `text`        |  Yes    | —              | The label displayed on the button. |
-| `size`        |  Yes    | —              | Adjusts padding and font size. Options: `sm`, `md`, `lg`, `xl`. |
-| `color`       |  Yes    | —              | Sets the button's theme color. Options: `blue`, `red`, `green`, `gray`. |
-| `variant`     |  Yes    | —              | Chooses the style variant: `solid`, `outline`, or `ghost`. |
-| `icon`        |   No    | `undefined`    | Optional icon element displayed to the left of `text`. |
-| `rounded`     |   No    | `"md"`         | Controls corner rounding. Options: `none`, `md`, `lg`, `full`. |
-| `fullWidth`   |   No    | `false`        | If true, makes the button span the full width of its container. |
-| `onClick`     |   No    | `undefined`    | Function called when the button is clicked. |
-| `disabled`    |   No    | `false`        | Disables interaction and applies dim styling. |
-| `className`   |   No    | `""`           | Allows additional custom CSS classes to be passed in. |
-
-
-###  Quick Summary:
-- **Required props**: `text`, `size`, `color`, and `variant` — these define the button’s core appearance and behavior.
-- **Optional props** add layers of flexibility — from icons and rounding to width control and click handlers. 
-
----
-
-## ✨ Examples of Usage
-
-- **Basic Button:** Only required props (text, size, variant, color)  
-- **Full Customization:** Add icons, loading state, disabled, rounded corners, full width  
-- **Icon-Only Button:** Use with `icon` and `rounded="full"` for circular UI  
-- **Rounded Pill Button:** Customize `rounded` prop for a sleek, pill shape
-
-➡️ Check out the examples in `src/Components/Examples/` to explore each case in action.
+| Component      | Status         |
+|----------------|----------------|
+| CoreButton     | ✅ Done         |
+| CoreCard       | 🛠️ In Progress |
+| CoreInput      | 📝 Planned      |
+| CoreBadge      | 📝 Planned      |
+| CoreModal      | 📝 Planned      |
 
 ---
 
 ## 🤝 Contributing
 
-We’d love your help! CoreButton is evolving and your ideas can shape its future.
+We welcome contributions!
 
-### 🧭 Quick Start to Contribute:
+If you're new to open-source, check out [First Contributions](https://firstcontributions.github.io/) for a simple walkthrough.
 
-1. Fork this repository  
-2. Create a feature branch: `git checkout -b feature/my-idea`  
-3. Make your changes  
-4. Submit a pull request  
+### Folder Structure
+
+```
+src/
+├── Components/
+│   ├── CoreButton/
+│   ├── Examples/
+│   └── Wrapper/
+```
+
+### Guidelines
+
+- Use functional components with hooks
+- Keep styles Tailwind-first
+- Write reusable logic where possible
 
 ---
 
-## 📄 License
+## 📚 External Resources
 
-CoreButton is open-source and licensed under the **MIT License** — feel free to use it in personal or commercial projects. See [LICENSE](./LICENSE) for details.
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [clsx](https://github.com/lukeed/clsx)
+- [tailwind-variants](https://tailwind-variants.org/)
+- [React Docs](https://react.dev/)
+
+---
+
+Thanks for using CoreUI!
+
+If you have suggestions or want to see specific components, open an issue or PR. We’re actively improving the library and looking forward to your contributions. 🌟
