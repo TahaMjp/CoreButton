@@ -81,6 +81,28 @@ function App() {
 
 ---
 
+## 🧩 CoreButton Props Overview
+
+| Prop Name     | Required | Default Value | What It Does |
+|---------------|----------|----------------|--------------|
+| `text`        |  Yes    | —              | The label displayed on the button. |
+| `size`        |  Yes    | —              | Adjusts padding and font size. Options: `sm`, `md`, `lg`, `xl`. |
+| `color`       |  Yes    | —              | Sets the button's theme color. Options: `blue`, `red`, `green`, `gray`. |
+| `variant`     |  Yes    | —              | Chooses the style variant: `solid`, `outline`, or `ghost`. |
+| `icon`        |   No    | `undefined`    | Optional icon element displayed to the left of `text`. |
+| `rounded`     |   No    | `"md"`         | Controls corner rounding. Options: `none`, `md`, `lg`, `full`. |
+| `fullWidth`   |   No    | `false`        | If true, makes the button span the full width of its container. |
+| `onClick`     |   No    | `undefined`    | Function called when the button is clicked. |
+| `disabled`    |   No    | `false`        | Disables interaction and applies dim styling. |
+| `className`   |   No    | `""`           | Allows additional custom CSS classes to be passed in. |
+
+
+###  Quick Summary:
+- **Required props**: `text`, `size`, `color`, and `variant` — these define the button’s core appearance and behavior.
+- **Optional props** add layers of flexibility — from icons and rounding to width control and click handlers. 
+
+---
+
 ## ✨ Examples of Usage
 
 - **Basic Button:** Only required props (text, size, variant, color)  
