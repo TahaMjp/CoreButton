@@ -1,160 +1,145 @@
+// CoreButton.js
+// ============================================================================
+// Config-Driven, Scalable Button Component
+// ============================================================================
+// Features:
+// - Fully driven by config.js (sizes, variants, colors, rounded corners)
+// - Runtime validation with developer-friendly errors
+// - Accessibility via ARIA attributes
+// - Supports icons, fullWidth, custom className
+// - Fully scalable, maintainable, and ready for production
+// ============================================================================
+
 import React from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx";
-import { buttonConfig } from "./config";
+import clsx from "clsx"; // Merge Tailwind classes conditionally
+import cfg from "./config"; // Import design tokens
 
-/**
- * CoreButton - A fully customizable button
- *
- * Props:
- * - text: string — Label text (optional if using children)
- * - children: node — Custom JSX content
- * - size: "sm" | "md" | "lg" | "xl" — Padding & font size
- * - variant: "solid" | "outline" | "ghost" — Style type
- * - color: "blue" | "red" | "green" | "gray" — Theme color
- * - icon: ReactNode — Optional icon
- * - iconPosition: "left" | "right"
- * - rounded: "none" | "md" | "lg" | "full"
- * - fullWidth: boolean
- * - onClick: function
- * - disabled: boolean
- * - className: string
- * - shadow: "none" | "sm" | "md" | "lg"
- * - gap: string — Space between icon and text
- * - customColors: { base, text, hover, border } — Override colors
- * - as: "button" | "a" — Render as button or link
- * - href: string — Link URL
- * - type: string — Button type
- * - ariaLabel: string — Accessibility label
- * - borderWidth: number — Custom border width in px
- */
+// ---------------------------------------
+// Utility: extract keys from an object
+// Example: getKeys(cfg.sizes) -> ['sm', 'md', 'lg', 'xl']
+// ---------------------------------------
+const getKeys = (obj) => Object.keys(obj);
+
+// ---------------------------------------
+// Runtime prop validator
+// Shows developer-friendly error in console during development
+// Only active in development mode
+// ---------------------------------------
+const validateProp = (propValue, propName, allowedValues, configPath) => {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    !allowedValues.includes(propValue)
+  ) {
+    console.error(
+      `⚠️ [CoreButton] Invalid "${propName}" value: "${propValue}".\n` +
+        `Allowed values: ${allowedValues.join(", ")}\n` +
+        `Check the config path: ${configPath}\n` +
+        `Example to add: ${configPath}['${propValue}'] = "<Tailwind classes>";`
+    );
+  }
+};
+
+// ---------------------------------------
+// CoreButton Component
+// ---------------------------------------
 const CoreButton = ({
-  text,
-  children,
-  size = "md",
-  variant = "solid",
-  color = "blue",
-  icon,
-  iconPosition = "left",
-  rounded = "md",
-  fullWidth = false,
-  onClick,
-  disabled = false,
-  className = "",
-  shadow = "none",
-  gap = "0.5rem",
-  customColors,
-  as = "button",
-  href,
-  type = "button",
-  ariaLabel,
-  borderWidth,
+  text, // Button label (required)
+  size = cfg.defaults.size, // Size key (sm/md/lg/xl)
+  variant = cfg.defaults.variant, // Variant type (solid/outline/ghost)
+  color = cfg.defaults.color, // Color key
+  icon, // Optional icon component (ReactNode)
+  rounded = cfg.defaults.rounded, // Border radius
+  fullWidth = false, // Stretches button to full container width
+  onClick, // Click handler
+  disabled = false, // Disabled state
+  className = "", // Extra classes for custom styling
+  ariaLabel, // Optional ARIA label (for icon-only buttons)
 }) => {
-  // -----------------------------
-  // Fetch classes from config
-  // -----------------------------
-  const sizeClasses = buttonConfig.sizes[size] || buttonConfig.sizes.md;
-  const roundedClasses =
-    buttonConfig.rounded[rounded] || buttonConfig.rounded.md;
-  const shadowClasses = buttonConfig.shadows[shadow] || "";
+  // ---------------------------------------
+  // Validate props in development
+  // Provides exact guidance for developer to fix invalid values
+  // ---------------------------------------
+  validateProp(size, "size", getKeys(cfg.sizes), "cfg.sizes");
+  validateProp(variant, "variant", getKeys(cfg.variants), "cfg.variants");
+  validateProp(
+    color,
+    "color",
+    getKeys(cfg.variants[variant] || {}),
+    `cfg.variants.${variant}`
+  );
+  validateProp(rounded, "rounded", getKeys(cfg.rounded), "cfg.rounded");
 
-  // -----------------------------
-  // Merge variant + color
-  // customColors overrides config if provided
-  // -----------------------------
-  const variantClasses = customColors
-    ? `${customColors.base} ${customColors.text} ${customColors.hover || ""} ${
-        customColors.border || ""
-      }`
-    : buttonConfig.variants[variant]?.[color] || "";
+  // ---------------------------------------
+  // Fetch Tailwind classes from config
+  // Falls back to defaults if prop is invalid or missing
+  // ---------------------------------------
+  const sizeClass = cfg.sizes[size] || cfg.sizes[cfg.defaults.size];
+  const variantClass =
+    (cfg.variants[variant] && cfg.variants[variant][color]) ||
+    cfg.variants[cfg.defaults.variant][cfg.defaults.color];
+  const roundedClass =
+    cfg.rounded[rounded] || cfg.rounded[cfg.defaults.rounded];
 
-  // -----------------------------
-  // Optional custom border width
-  // -----------------------------
-  const borderClass = borderWidth ? `border-[${borderWidth}px]` : "";
-
-  // -----------------------------
-  // Final class composition
-  // clsx handles conditional classes
-  // -----------------------------
+  // ---------------------------------------
+  // Compose final className string
+  // Includes base styling, config classes, conditional states, and user-provided className
+  // ---------------------------------------
   const finalClassNames = clsx(
-    "inline-flex items-center justify-center font-medium transition-all duration-200 active:scale-[0.97]",
-    sizeClasses,
-    variantClasses,
-    roundedClasses,
-    shadowClasses,
-    borderClass,
+    "inline-flex items-center justify-center font-medium transition-all duration-200",
+    sizeClass,
+    variantClass,
+    roundedClass,
     {
-      "w-full": fullWidth,
-      "opacity-50 cursor-not-allowed": disabled,
+      "w-full": fullWidth, // Make button full width if true
+      "opacity-50 cursor-not-allowed": disabled, // Disabled styles
     },
     className
   );
 
-  // -----------------------------
-  // Inner content: icon + text/children
-  // -----------------------------
-  const content = (
-    <span className="flex items-center" style={{ gap }}>
-      {icon && iconPosition === "left" && <span>{icon}</span>}
-      {text || children}
-      {icon && iconPosition === "right" && <span>{icon}</span>}
-    </span>
-  );
+  // ---------------------------------------
+  // JSX Render
+  // - Includes optional icon
+  // - Includes accessibility props
+  // ---------------------------------------
+  return (
+    <button
+      onClick={onClick}
+      className={finalClassNames}
+      disabled={disabled} // Native disabled attribute
+      aria-disabled={disabled} // ARIA attribute for screen readers
+      aria-label={ariaLabel || text} // ARIA label fallback to text
+    >
+      {/* Render icon if provided */}
+      {icon && <span className="mr-2">{icon}</span>}
 
-  // -----------------------------
-  // Common props for both <button> and <a>
-  // -----------------------------
-  const commonProps = {
-    onClick,
-    className: finalClassNames,
-    disabled,
-    "aria-label": ariaLabel || text,
-  };
-
-  // -----------------------------
-  // Render as <a> or <button>
-  // -----------------------------
-  return as === "a" ? (
-    <a href={href} {...commonProps}>
-      {content}
-    </a>
-  ) : (
-    <button type={type} {...commonProps}>
-      {content}
+      {/* Render button text */}
+      {text}
     </button>
   );
 };
 
-// -----------------------------
-// PropTypes validation
-// -----------------------------
+// ---------------------------------------
+// PropTypes: ensures correct usage
+// Dynamically generated from config.js
+// ---------------------------------------
 CoreButton.propTypes = {
-  text: PropTypes.string,
-  children: PropTypes.node,
-  size: PropTypes.oneOf(["sm", "md", "lg", "xl"]).isRequired,
-  variant: PropTypes.oneOf(["solid", "outline", "ghost"]).isRequired,
-  color: PropTypes.oneOf(["blue", "red", "green", "gray"]).isRequired,
+  text: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(getKeys(cfg.sizes)),
+  variant: PropTypes.oneOf(getKeys(cfg.variants)),
+  color: PropTypes.oneOf(
+    Array.from(new Set(Object.values(cfg.variants).flatMap(Object.keys)))
+  ),
   icon: PropTypes.node,
-  iconPosition: PropTypes.oneOf(["left", "right"]),
-  rounded: PropTypes.oneOf(["none", "md", "lg", "full"]),
+  rounded: PropTypes.oneOf(getKeys(cfg.rounded)),
   fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  shadow: PropTypes.oneOf(["none", "sm", "md", "lg"]),
-  gap: PropTypes.string,
-  customColors: PropTypes.shape({
-    base: PropTypes.string,
-    text: PropTypes.string,
-    hover: PropTypes.string,
-    border: PropTypes.string,
-  }),
-  as: PropTypes.oneOf(["button", "a"]),
-  href: PropTypes.string,
-  type: PropTypes.string,
   ariaLabel: PropTypes.string,
-  borderWidth: PropTypes.number,
 };
 
+// ---------------------------------------
+// Export the component for usage
+// ---------------------------------------
 export default CoreButton;
