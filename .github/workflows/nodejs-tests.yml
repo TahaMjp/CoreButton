@@ -1,7 +1,12 @@
 name: Node.js Tests
 
 on:
-  workflow_dispatch:  # allows manual runs only, disables automatic triggers
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint-and-test:
@@ -9,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [18.x, 20.x]
 
     steps:
       # 1. Checkout the repo
