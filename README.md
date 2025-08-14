@@ -166,6 +166,7 @@ src/
 │   ├── CoreButton/
 │   ├── Examples/
 │   └── Wrapper/
+|
 ```
 
 ### Guidelines
