@@ -10,10 +10,10 @@
 // - Fully scalable, maintainable, and ready for production
 // ============================================================================
 
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx"; // Merge Tailwind classes conditionally
-import cfg from "./config"; // Import design tokens
+import React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx'; // Merge Tailwind classes conditionally
+import cfg from './config'; // Import design tokens
 
 // ---------------------------------------
 // Utility: extract keys from an object
@@ -28,12 +28,12 @@ const getKeys = (obj) => Object.keys(obj);
 // ---------------------------------------
 const validateProp = (propValue, propName, allowedValues, configPath) => {
   if (
-    process.env.NODE_ENV !== "production" &&
+    process.env.NODE_ENV !== 'production' &&
     !allowedValues.includes(propValue)
   ) {
     console.error(
       `⚠️ [CoreButton] Invalid "${propName}" value: "${propValue}".\n` +
-        `Allowed values: ${allowedValues.join(", ")}\n` +
+        `Allowed values: ${allowedValues.join(', ')}\n` +
         `Check the config path: ${configPath}\n` +
         `Example to add: ${configPath}['${propValue}'] = "<Tailwind classes>";`
     );
@@ -53,22 +53,22 @@ const CoreButton = ({
   fullWidth = false, // Stretches button to full container width
   onClick, // Click handler
   disabled = false, // Disabled state
-  className = "", // Extra classes for custom styling
-  ariaLabel, // Optional ARIA label (for icon-only buttons)
+  className = '', // Extra classes for custom styling
+  ariaLabel // Optional ARIA label (for icon-only buttons)
 }) => {
   // ---------------------------------------
   // Validate props in development
   // Provides exact guidance for developer to fix invalid values
   // ---------------------------------------
-  validateProp(size, "size", getKeys(cfg.sizes), "cfg.sizes");
-  validateProp(variant, "variant", getKeys(cfg.variants), "cfg.variants");
+  validateProp(size, 'size', getKeys(cfg.sizes), 'cfg.sizes');
+  validateProp(variant, 'variant', getKeys(cfg.variants), 'cfg.variants');
   validateProp(
     color,
-    "color",
+    'color',
     getKeys(cfg.variants[variant] || {}),
     `cfg.variants.${variant}`
   );
-  validateProp(rounded, "rounded", getKeys(cfg.rounded), "cfg.rounded");
+  validateProp(rounded, 'rounded', getKeys(cfg.rounded), 'cfg.rounded');
 
   // ---------------------------------------
   // Fetch Tailwind classes from config
@@ -86,13 +86,13 @@ const CoreButton = ({
   // Includes base styling, config classes, conditional states, and user-provided className
   // ---------------------------------------
   const finalClassNames = clsx(
-    "inline-flex items-center justify-center font-medium transition-all duration-200",
+    'inline-flex items-center justify-center font-medium transition-all duration-200',
     sizeClass,
     variantClass,
     roundedClass,
     {
-      "w-full": fullWidth, // Make button full width if true
-      "opacity-50 cursor-not-allowed": disabled, // Disabled styles
+      'w-full': fullWidth, // Make button full width if true
+      'opacity-50 cursor-not-allowed': disabled // Disabled styles
     },
     className
   );
@@ -136,7 +136,7 @@ CoreButton.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  ariaLabel: PropTypes.string,
+  ariaLabel: PropTypes.string
 };
 
 // ---------------------------------------
